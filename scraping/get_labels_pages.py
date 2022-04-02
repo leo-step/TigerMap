@@ -26,7 +26,7 @@ for td in soup.find_all("td", {"class": "class-info"}):
     link_elem = td.find("a")
     for catalog_code in catalog_codes:
         if catalog_code not in seen_codes:
-            labels.write("{},{},{},{}\n".format(course_id, catalog_code, link_elem["href"], link_elem.text))
+            labels.write("{},{},{},\"{}\"\n".format(course_id, catalog_code, link_elem["href"], link_elem.text))
             download_links.append((course_id, link_elem["href"]))
             course_id += 1
             seen_codes.add(catalog_code)
@@ -41,12 +41,14 @@ for td in soup.find_all("td", {"class": "class-info"}):
     link_elem = td.find("a")
     for catalog_code in catalog_codes:
         if catalog_code not in seen_codes:
-            labels.write("{},{},{},{}\n".format(course_id, catalog_code, link_elem["href"], link_elem.text))
+            labels.write("{},{},{},\"{}\"\n".format(course_id, catalog_code, link_elem["href"], link_elem.text))
             download_links.append((course_id, link_elem["href"]))
             course_id += 1
             seen_codes.add(catalog_code)
 
 labels.close()
+
+exit()
 
 if os.path.isdir(PAGES_DIR):
     shutil.rmtree(PAGES_DIR)
