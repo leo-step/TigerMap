@@ -12,7 +12,7 @@ export default function Main(props) {
     
     useEffect(() => {
       if (code) {
-        fetch("http://localhost:5000/api", {
+        fetch("/api", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
