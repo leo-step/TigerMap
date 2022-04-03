@@ -38,9 +38,9 @@ def call_proc(name, args=[]):
 
 @app.route("/api", methods=["POST"])
 def api():
-    code = request.get_json()["code"]
+    code = request.get_json()["code"] # needs validation
     course_data = call_proc("get_course_data", [code])[0]
-    id = course_data["id"]
+    id = course_data["id"] # what happens if course doesn't exist
     prereqs = [str(i) for i in course_graph.get_prereqs(id)]
     unlocks = [str(i) for i in course_graph.get_unlocks(id)]
     prereqs_data = call_proc("get_courses_data", [','.join(prereqs)])
