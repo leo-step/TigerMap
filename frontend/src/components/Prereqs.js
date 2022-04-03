@@ -1,14 +1,17 @@
-import {ClassPreview} from './ClassPreview';
+import {ClassLink} from './ClassLink';
 
 export default function Prereqs(props) {
-    return (
-        <div>
-            <h3>Prereqs</h3>
-            <ClassPreview />
-            <ClassPreview />
-            <ClassPreview />
-            <ClassPreview />
-            <ClassPreview />
-        </div>
-    );
+    if (props.prereqs) {
+        const classLinks = [];
+        for (const prereq of props.prereqs) {
+            classLinks.push(<ClassLink code={prereq.code} name={prereq.name} setCode={props.setCode}/>)
+        }
+        return (
+            <div>
+                <h3>Prereqs</h3>
+                {classLinks}
+            </div>
+        );
+    }
+    return <div></div>
 }

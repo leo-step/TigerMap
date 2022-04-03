@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import FullClass from './FullClass';
+import ClassInfo from './ClassInfo';
 import Prereqs from './Prereqs';
 import SearchBar from './SearchBar';
 import Unlocks from './Unlocks';
@@ -9,12 +9,20 @@ export default function Main(props) {
     const [code, setCode] = useState(null);
     
     useEffect(() => {
-      console.log(code);
-      // fetch data using code
-      //const data = null;
-      //props.setData(null);
-      // access data using props.data
-    });
+      if (code) {
+        fetch("http://localhost:5000/api", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({"code": code}),
+        })
+        .then(response => response.json())
+        .then(json => {
+          props.setData(json);
+        });
+      }
+    }, [code]);
   
     return (
       <Container style={{paddingTop: "16px"}}>
@@ -26,7 +34,7 @@ export default function Main(props) {
         <br />
         <Row>
           <Col>
-            <FullClass course={props.data.course}/>
+            <ClassInfo course={props.data.course}/>
           </Col>
         </Row>
         <br />
