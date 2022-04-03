@@ -6,8 +6,8 @@ from coursegraph import CourseGraph
 from secrets import *
 
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
-app.secret_key = APP_SECRET_KEY
-CORS(app) #comment this on deployment
+app.secret_key = os.environ.get(APP_SECRET_KEY)
+# CORS(app) #comment this on deployment
 
 course_graph = CourseGraph("../adjlist.txt")
 
@@ -17,10 +17,10 @@ def index():
 
 def call_proc(name, args=[]):
     db = mysql.connector.connect(
-        host=DB_HOST,
-        database=DB_NAME,
-        user=DB_USER,
-        password=DB_PASSWORD
+        host=os.environ.get(DB_HOST),
+        database=os.environ.get(DB_NAME),
+        user=os.environ.get(DB_USER),
+        password=os.environ.get(DB_PASSWORD)
     )
     cursor = db.cursor()
     cursor.callproc(name, args)
