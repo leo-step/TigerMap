@@ -9,7 +9,7 @@ app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 app.secret_key = os.environ.get("APP_SECRET_KEY")
 # CORS(app) #comment this on deployment
 
-course_graph = CourseGraph("../adjlist.txt")
+course_graph = CourseGraph(os.path.dirname(os.path.realpath(__file__)) + "/adjlist.txt")
 
 @app.route("/")
 def index():
