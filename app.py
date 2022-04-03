@@ -3,10 +3,10 @@ from flask_cors import CORS
 import mysql.connector
 import os
 from coursegraph import CourseGraph
-from secrets import *
+# from secrets import *
 
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
-app.secret_key = os.environ.get(APP_SECRET_KEY)
+app.secret_key = os.environ.get("APP_SECRET_KEY")
 # CORS(app) #comment this on deployment
 
 course_graph = CourseGraph("../adjlist.txt")
@@ -17,10 +17,10 @@ def index():
 
 def call_proc(name, args=[]):
     db = mysql.connector.connect(
-        host=os.environ.get(DB_HOST),
-        database=os.environ.get(DB_NAME),
-        user=os.environ.get(DB_USER),
-        password=os.environ.get(DB_PASSWORD)
+        host=os.environ.get("DB_HOST"),
+        database=os.environ.get("DB_NAME"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD")
     )
     cursor = db.cursor()
     cursor.callproc(name, args)
