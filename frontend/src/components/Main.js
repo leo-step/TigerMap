@@ -9,6 +9,7 @@ import logo from '../assets/logo.png'
 
 export default function Main(props) {
     const [code, setCode] = useState(null);
+    const [error, setError] = useState(null);
     
     useEffect(() => {
       if (code) {
@@ -20,8 +21,18 @@ export default function Main(props) {
           body: JSON.stringify({"code": code}),
         })
         .then(response => response.json())
-        .then(json => {
-          props.setData(json);
+        .then(result => {
+          props.setData(result);
+          if (!("course" in result)) {
+            setError("Server error");
+          }
+          else if (result.course == null) {
+            setError("Course not found")
+          }
+          else {
+            setError(null);
+            props.setData(result);
+          }
         });
       }
     }, [code]);
@@ -36,6 +47,7 @@ export default function Main(props) {
           <Row className="justify-content-center">
             <Col style={{maxWidth: "500px"}}>
               <SearchBar setCode={setCode}/>
+              <span className="text-danger">{error}</span>
             </Col>
           </Row>
           <br />

@@ -1,4 +1,4 @@
 TigerMap
 .vscode
 __pycache__
-secrets.py
+.env

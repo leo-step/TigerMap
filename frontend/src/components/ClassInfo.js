@@ -4,7 +4,7 @@ export default function ClassInfo(props) {
             <div>
                 <h2>{props.course.code} - {props.course.name}</h2>
                 <p>{props.course.description}</p>
-                <a href={props.course.link}>See more details</a>
+                <a href={props.course.link} target="_blank" rel="noopener noreferrer">See more details</a>
             </div>
         );
     }
