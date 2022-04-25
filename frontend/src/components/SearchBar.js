@@ -10,11 +10,11 @@ export default function SearchBar(props) {
             <FormGroup>
                 <Row>
                     <Col style={{paddingRight: "2px"}}>
-                    <Input type="text" size="lg" value={query} placeholder="COS 226" 
-                        onChange={(event) => setQuery(event.target.value.toUpperCase())}/>
+                    <Input type="text" size="lg" value={query} placeholder="COS 226" style={{textTransform: "uppercase"}}
+                        onChange={(event) => setQuery(event.target.value)}/>
                     </Col>
                     <Col md="auto" style={{paddingLeft: "2px"}}>
-                        <SearchButton query={query} setCode={() => {props.setCode(query)}}/> 
+                        <SearchButton query={query.toUpperCase()} setCode={() => {props.setCode(query.toUpperCase())}}/> 
                     </Col>
                 </Row> 
             </FormGroup>        
