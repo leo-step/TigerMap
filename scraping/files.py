@@ -1,6 +1,0 @@
-FALL_COURSES_FILE = "fall_courses.html"
-SPRING_COURSES_FILE = "spring_courses.html"
-LABELS_FILE = "labels.txt"
-PAGES_DIR = "pages"
-ADJLIST_FILE = "adjlist.txt"
-CHROME_DRIVER_PATH = "C:\\Users\\Leo\\Downloads\\chromedriver_win32\\chromedriver.exe"
