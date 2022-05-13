@@ -2,14 +2,13 @@ from collections import defaultdict
 from queue import Queue
 
 class CourseGraph:
-    def __init__(self, adjlist_file_path):
+    def __init__(self, prereq, unlock):
         self.prereq_graph = defaultdict(lambda: [])
         self.unlock_graph = defaultdict(lambda: [])
-        adjlist = open(adjlist_file_path, 'r')
-        for line in adjlist.readlines():
-            fields = line.split(',')
-            self.prereq_graph[int(fields[0])].append(int(fields[1]))
-            self.unlock_graph[int(fields[1])].append(int(fields[0]))
+        for edge in prereq["adjlist"]:
+            self.prereq_graph[edge[0]].append(edge[1])
+        for edge in unlock["adjlist"]:
+            self.unlock_graph[edge[0]].append(edge[1])
     def get_prereqs(self, id):
         prereqs = []
         id_queue = Queue()

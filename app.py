@@ -9,9 +9,9 @@ load_dotenv()
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 app.secret_key = os.getenv("APP_SECRET_KEY")
 
-course_graph = CourseGraph(os.path.dirname(os.path.realpath(__file__)) + "/adjlist.txt")
-client = pymongo.MongoClient(os.getenv("DB_CONN_STRING"))
-db = client.courses
+db = pymongo.MongoClient(os.getenv("DB_CONN_STRING")).courses
+course_graph = CourseGraph(db.graphs.find_one({"_id": "prereq"}),
+                           db.graphs.find_one({"_id": "unlock"}))
 
 @app.route("/")
 def index():
