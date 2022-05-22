@@ -1,7 +1,7 @@
 # TigerMap
 TigerMap is a course selection treasure map that helps you find your way through Princeton by showing which courses serve as prerequisites to a class and which courses that particular class unlocks. 
 
-Created by Leo Stepanewk and Aaliyah Sayed for HackPrinceton Spring 2022.
+Created by Leo Stepanewk and Aaliyah Sayed for HackPrinceton Spring 2022 ($1000 Best TigerApp Prize Winner).
 
 https://devpost.com/software/tigermap
 
